@@ -1,0 +1,42 @@
+state:
+  source: local
+  path: ./terraform.tfstate
+
+providers:
+  - name: aws
+    regions:
+      - us-east-1
+      - us-west-2
+    credentials: env
+    resource_types: []  # empty uses default supported types
+
+comparison:
+  ignore_attributes:
+    global:
+      - id
+      - arn
+      - tags_all
+      - tags
+      - timeouts
+      - region
+      - account_id
+    aws_instance:
+      - cpu_core_count
+
+schedules:
+  - name: nightly
+    cron: "0 2 * * *"
+    enabled: true
+
+output:
+  console: true
+  json_path: ./reports/latest.json
+  api_store: true
+
+database:
+  driver: sqlite
+  dsn: ./drift.db
+
+api:
+  addr: ":8080"
+  api_key: ""
