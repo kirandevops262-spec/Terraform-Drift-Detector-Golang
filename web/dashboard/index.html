@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terraform Drift Detector</title>
+  <link rel="stylesheet" href="/dashboard/style.css">
+</head>
+<body>
+  <header>
+    <h1>Terraform Drift Detector</h1>
+    <p>Compare Terraform state against live cloud infrastructure</p>
+  </header>
+
+  <main>
+    <section class="actions">
+      <button id="run-scan" class="btn primary">Run Scan</button>
+      <button id="refresh" class="btn">Refresh</button>
+      <span id="status" class="status"></span>
+    </section>
+
+    <section class="summary" id="summary">
+      <div class="card">
+        <h3>Total Scans</h3>
+        <p id="scan-count">-</p>
+      </div>
+      <div class="card">
+        <h3>Latest Drifts</h3>
+        <p id="drift-count">-</p>
+      </div>
+      <div class="card">
+        <h3>Last Scan</h3>
+        <p id="last-scan">-</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Scan History</h2>
+      <table id="scans-table">
+        <thead>
+          <tr>
+            <th>Scan ID</th>
+            <th>Status</th>
+            <th>Started</th>
+            <th>Drifts</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="detail-section" class="hidden">
+      <h2>Drift Details <span id="detail-scan-id"></span></h2>
+      <table id="drifts-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Resource</th>
+            <th>Drift</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button id="export-json" class="btn">Export JSON</button>
+    </section>
+  </main>
+
+  <script src="/dashboard/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+bin/
+*.db
+reports/
+.DS_Store
